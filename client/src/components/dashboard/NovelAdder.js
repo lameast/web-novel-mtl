@@ -1,11 +1,12 @@
 import {useState} from 'react';
 import axios from 'axios';
+import Checkbox from '../Checkbox';
 
 const client = axios.create({
     baseURL: 'http://127.0.0.1:8000'
 });
 
-const NovelAdder = ({className, genres, tags}) => {
+const NovelAdder = ({className, genres, tags, setGenres, setTags}) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [description, setDescription] = useState('');
@@ -20,6 +21,9 @@ const NovelAdder = ({className, genres, tags}) => {
         })
         console.log(res)
     }
+
+    const tagBoxes = tags.map(tag => <Checkbox name={tag.name} boxes={tags} setBoxes={setTags}/>)
+    const genreBoxes = genres.map(genre => <Checkbox name={genre.name} boxes={genres} setBoxes={setGenres}/>)
 
     return (
         <form className={className} onSubmit={handleSubmit}>
@@ -57,14 +61,14 @@ const NovelAdder = ({className, genres, tags}) => {
                 Genres:
             </label>
             <div id='Genres'>
-                {genres}
+                {genreBoxes}
             </div>
             <label htmlFor='tags'>
                 Tags:
                 
             </label>
             <div id='Tags'>
-                {tags}
+                {tagBoxes}
             </div>
         </form>
     )

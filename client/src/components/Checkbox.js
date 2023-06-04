@@ -1,13 +1,15 @@
 
-import {useState} from 'react'
 
 /*
 Generic controlled checkbox component 
 */
 const Checkbox = (props) => {
-    const [isChecked, setIsChecked] = useState(false);
     const checkHandler = () => {
-        setIsChecked(!isChecked)
+
+        const newBoxes = [...props.boxes];
+        const index = newBoxes.findIndex((box) => box.name === props.name);
+        newBoxes[index].isChecked = !newBoxes[index].isChecked
+        props.setBoxes(newBoxes);
     }
     
     return (
