@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tag from '../tag';
+import Tag from '../../../model/tag';
 import { TextField, Autocomplete, FormControl, Chip } from '@mui/material';
 export default function Tags({tags, setTags} : {tags: Array<Tag>, setTags: React.Dispatch<React.SetStateAction<Tag[]>>}){
     const [value, setValue] = React.useState<any | null>([]);
@@ -7,7 +7,7 @@ export default function Tags({tags, setTags} : {tags: Array<Tag>, setTags: React
     const handleChange = (event: any, newValue: any | null) => {
         setValue([...newValue]);
         const selectedTags : Tag[] = tags.map((item: Tag) => {
-            return newValue.some((tag: Tag) => tag["tags_name"] == item["tags_name"]) ? {...item, "checked": true} : {...item, "checked": false}
+            return newValue.some((tag: Tag) => tag["tags_name"] === item["tags_name"]) ? {...item, "checked": true} : {...item, "checked": false}
          })
         setTags(selectedTags);
     }

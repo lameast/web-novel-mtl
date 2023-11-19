@@ -1,12 +1,11 @@
-"use client"
 import React, {useState, useEffect} from 'react';
 import Searchbar from './search/searchbar';
 import Genres from './search/genres';
-import Tag from './tag';
+import Tag from '../../model/tag';
 import Tags from './search/tags';
 import { Container, Button } from '@mui/material';
-import Novel from './novel';
-import NovelCard from './NovelCard';
+import Novel from '../../model/novel';
+import NovelCard from './novel-card/NovelCard';
 
 export default function Search(){
     const [searchValue, setSearchValue] = useState<String>("");
@@ -20,8 +19,8 @@ export default function Search(){
         result.forEach((item: Tag) => {
             item.checked = false;
         });
-        const fetchedGenres = result.filter((item : Tag) => item["genre_flag"] == 1);
-        const fetchedTags = result.filter((item : Tag) => item["genre_flag"] == 0);
+        const fetchedGenres = result.filter((item : Tag) => item["genre_flag"] === 1);
+        const fetchedTags = result.filter((item : Tag) => item["genre_flag"] === 0);
         setGenres(fetchedGenres);
         setTags(fetchedTags);
     }

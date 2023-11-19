@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    'drf_yasg',
+    'novel'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +57,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -76,6 +77,12 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
+}
+
 WSGI_APPLICATION = 'server.wsgi.application'
 
 
@@ -84,8 +91,12 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'translation_live',
+        'USER': 'root',
+        'PASSWORD': 'webnovel123',
+        'HOST':'192.168.0.8',
+        'PORT':'3306',
     }
 }
 
@@ -131,6 +142,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_WHITELIST = [
+CORS_ALLOWED_ORIGINS = [
      'http://localhost:3000'
 ]

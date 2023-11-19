@@ -1,11 +1,8 @@
-"use client"
 import * as React from 'react';
 import { FormControl, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import Tag from '../tag';
-import { AnyARecord } from 'dns';
 
 export default function Searchbar({searchValue, setSearchValue, handleSubmit} : {searchValue: String, setSearchValue: React.Dispatch<React.SetStateAction<String>>, handleSubmit: React.MouseEventHandler<HTMLDivElement>}){
 
